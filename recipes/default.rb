@@ -28,14 +28,16 @@ zip_filepath="#{node[:cw_mon][:home_dir]}/CloudWatchMonitoringScripts-v#{node[:c
 
 case node[:platform_family]
   when 'rhel'
-    %w{unzip perl-CPAN}.each do |p|
-      package p
-    end
+    if node[:platform] != "amazon"
+      %w{unzip perl-CPAN}.each do |p|
+        package p
+      end
 
-    %w{Test::More Bundle::LWP5_837 Bundle::LWP}.each do |m|
-      execute "install Perl module #{m}" do
-        command "perl -MCPAN -e 'install #{m}' < /dev/null"
-        not_if { ::File.directory?(install_path) }
+      %w{Test::More Bundle::LWP5_837 Bundle::LWP}.each do |m|
+        execute "install Perl module #{m}" do
+          command "perl -MCPAN -e 'install #{m}' < /dev/null"
+          not_if { ::File.directory?(install_path) }
+        end
       end
     end
 

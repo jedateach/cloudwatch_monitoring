@@ -20,6 +20,7 @@ Requirements
 
 * Ubuntu/Debian
 * RHEL
+* Amazon
 
 
 Attributes
