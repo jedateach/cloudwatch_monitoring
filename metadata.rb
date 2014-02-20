@@ -6,7 +6,7 @@ description      'This script is forked from https://github.com/alexism/cloudwat
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version "1.3.0"
 
-%w{ ubuntu debian redhat centos}.each do |os|
+%w{ ubuntu debian redhat centos amazon }.each do |os|
   supports os
 end
 

@@ -27,9 +27,10 @@ install_path = node[:cw_mon][:install_path]
 
 case node[:platform_family]
   when 'rhel'
-    %w{unzip perl-CPAN}.each do |p|
-      package p
-    end
+    if node[:platform] != "amazon"
+      %w{unzip perl-CPAN}.each do |p|
+        package p
+      end
 
     %w{Test::More Bundle::LWP}.each do |m|
       execute "install Perl module #{m}" do
