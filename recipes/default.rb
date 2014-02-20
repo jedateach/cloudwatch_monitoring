@@ -32,10 +32,11 @@ case node[:platform_family]
         package p
       end
 
-    %w{Test::More Bundle::LWP}.each do |m|
-      execute "install Perl module #{m}" do
-        command "perl -MCPAN -e 'install #{m}' < /dev/null"
-        not_if { ::File.directory?(install_path) }
+      %w{Test::More Bundle::LWP}.each do |m|
+        execute "install Perl module #{m}" do
+          command "perl -MCPAN -e 'install #{m}' < /dev/null"
+          not_if { ::File.directory?(install_path) }
+        end
       end
     end
 
